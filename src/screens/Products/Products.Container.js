@@ -2,10 +2,11 @@
 
 import React from 'react';
 import Products from './Products';
+import { withRouter } from 'react-router-dom';
 import { createSelectorCreator, defaultMemoize } from 'reselect';
+import { compose } from 'recompose';
 import Immutable from 'immutable';
 import connect from 'react-redux/es/connect/connect';
-import _ from 'lodash';
 
 import get from '~/store/products/action';
 import set from '~/store/cart/action';
@@ -14,7 +15,7 @@ type Props = {
   products: {
     payload: [],
   },
-  cart: any,
+  history: any,
   dispatch: () => void,
 }
 
@@ -23,27 +24,21 @@ class ProductsContainer extends React.Component<Props, void> {
     this.props.dispatch(get());
   }
 
-  onPressBuy = (product) => {
-    const cart = this.props.cart.payload;
-    const productIndex = _.findIndex(cart, { id: product.id });
-    let productCart;
-    console.log('INDEX', productIndex);
-    if (productIndex !== -1) {
-      productCart = cart[productIndex];
-      cart[productIndex] =
-        Object.assign({ ...productCart }, { quantity: productCart.quantity += 1 });
-    } else {
-      productCart = product;
-      productCart.quantity = 1;
-      cart.push(productCart);
-    }
-    this.props.dispatch(set(cart));
+  onPressProduct = (product) => {
+    const { history } = this.props;
+    history.push(`products/${product.id}`);
+  };
+
+  onPressBuy = (product, e) => {
+    e.stopPropagation();
+    this.props.dispatch(set(product));
   };
 
   render() {
     return (
       <Products
         onPressBuy={this.onPressBuy}
+        onPressProduct={this.onPressProduct}
         products={this.props.products.payload}
       />
     );
@@ -55,14 +50,10 @@ const createImmutableSelector = createSelectorCreator(defaultMemoize, Immutable.
 const getProducts = createImmutableSelector([state => state], state =>
   state.getIn(['products']).toJS());
 
-const getCart = createImmutableSelector([state => state], state =>
-  state.getIn(['cart']).toJS());
-
 function mapStateToProps(state) {
   return {
     products: getProducts(state),
-    cart: getCart(state),
   };
 }
 
-export default connect(mapStateToProps)(ProductsContainer);
+export default compose(connect(mapStateToProps), withRouter)(ProductsContainer);

@@ -9,3 +9,25 @@
   width: @containerWidth;
   margin: 0 auto;
 }
+
+.rightContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bagIcon {
+  &:hover {
+    color: @secondaryColor
+  }
+}
+
+.priceContainer {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.totalDesc {
+  font-size: 10pt;
+}

@@ -8,6 +8,7 @@ import style from './Products.less';
 type Props = {
   products: [];
   onPressBuy: () => void,
+  onPressProduct: () => void,
 }
 
 class Products extends React.PureComponent<Props, void> {
@@ -22,6 +23,7 @@ class Products extends React.PureComponent<Props, void> {
           {products && products.map((product) => (
             <ProductItem
               onPressBuy={this.props.onPressBuy}
+              onPressProduct={this.props.onPressProduct}
               key={product.id}
               item={product}
             />

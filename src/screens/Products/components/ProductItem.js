@@ -2,7 +2,6 @@
 /* @flow */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -20,6 +19,7 @@ type Props = {
     picture: string,
   },
   onPressBuy: () => void,
+  onPressProduct: () => void,
   // description: string,
   // memory: string,
   // brand: string,
@@ -38,7 +38,11 @@ const ProductItem = (props: Props) => {
   } = props.item;
   return (
     <Grid item key={id} xs={2}>
-      <Paper className={style.productCard} elevation={1}>
+      <Paper
+        className={style.productCard}
+        elevation={1}
+        onClick={() => props.onPressProduct(props.item)}
+      >
         <img
           src={picture}
           alt={title}
@@ -47,15 +51,13 @@ const ProductItem = (props: Props) => {
         />
         <div className={style.productInfo}>
           <h4 className={style.productName}>
-            <Link to={`/products/${id}`}>
-              {title}
-            </Link>
+            {title}
           </h4>
           <span className={style.productPrice}>{Money(price)}</span>
         </div>
         <div className={style.addRemoveContainer}>
           <Button
-            onClick={() => { props.onPressBuy(props.item); }}
+            onClick={(e) => { props.onPressBuy(props.item, e); }}
             variant="contained"
             color="secondary"
             className={style.productBuyAction}

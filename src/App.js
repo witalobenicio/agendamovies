@@ -9,6 +9,7 @@ import theme from './theme';
 import Header from './components/Header/Header';
 import store from '~/store';
 import renderScreens from '~/screens';
+import ErrorDialog from '~/components/ErrorDialog/ErrorDialog';
 
 type Props = {
   // children: any,
@@ -24,6 +25,7 @@ class App extends Component<Props, void> {
           <React.Fragment>
             <CssBaseline />
             <Header />
+            <ErrorDialog />
             <Router>
               <Switch>
                 {renderScreens()}

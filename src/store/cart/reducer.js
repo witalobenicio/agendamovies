@@ -2,7 +2,7 @@
 
 import { Map, List } from 'immutable';
 
-import { SET_CART } from './action';
+import { CART_REQUEST, CART_SUCCESS, CART_FAILURE } from './action';
 
 const initialState = Map({
   type: '',
@@ -12,9 +12,18 @@ const initialState = Map({
 function reducer(state = initialState, action): any {
   const { type } = action;
 
-  if (type === SET_CART) {
+  if (type === CART_REQUEST) {
+    return state.updateIn(['type'], () => type).setIn(['payload'], List([]));
+  }
+
+  if (type === CART_SUCCESS) {
     const { payload } = action;
     return state.updateIn(['type'], () => type).setIn(['payload'], List(payload));
+  }
+
+  if (type === CART_FAILURE) {
+    const { payload, error } = action;
+    return state.updateIn(['type'], () => type).updateIn(['error'], () => error).setIn(['payload'], List(payload));
   }
 
   return state;
