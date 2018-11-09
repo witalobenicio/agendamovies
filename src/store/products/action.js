@@ -25,7 +25,7 @@ export function failure(response) {
   };
 }
 
-export function get(payload) {
+export default function get(payload) {
   return dispatch => {
     dispatch({
       type: PRODUCTS_REQUEST,
@@ -36,9 +36,3 @@ export function get(payload) {
     });
   };
 }
-
-export default {
-  get,
-  failure,
-  success,
-};

@@ -1,12 +1,12 @@
 /* @flow */
 
-import { Map, List } from 'immutable';
+import { Map } from 'immutable';
 
 import { PRODUCTS_REQUEST, PRODUCTS_FAILURE, PRODUCTS_SUCCESS } from './action';
 
 const initialState = Map({
   type: '',
-  payload: List([]),
+  payload: [],
 });
 
 function reducer(state = initialState, action): any {

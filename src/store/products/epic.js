@@ -11,8 +11,8 @@ const resume = (action$: any) =>
     .ofType(PRODUCTS_REQUEST)
     .map(({ payload }) => payload)
     .mergeMap(() =>
-      AjaxRequest('get', '/products')
-        .flatMap(({ response }: { response: any }) => Observable.of(success(response.resource)))
+      AjaxRequest('get', '/products/')
+        .flatMap((response) => Observable.of(success(response)))
         .catch(err => Observable.of(failure(err))));
 
 export default combineEpics(resume);

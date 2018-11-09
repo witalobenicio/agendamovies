@@ -34,7 +34,7 @@ export function configureStore() {
     actionTransformer: action => action,
   });
 
-  store = createStore(reducers, Map({}), applyMiddleware(thunk, epicMiddleware, logger));
+  store = createStore(reducers(), Map({}), applyMiddleware(thunk, epicMiddleware, logger));
   return store;
 }
 
