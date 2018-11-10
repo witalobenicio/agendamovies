@@ -31,7 +31,7 @@ class ProductsContainer extends React.Component<Props, void> {
 
   onPressBuy = (product, e) => {
     e.stopPropagation();
-    this.props.dispatch(set(product));
+    this.props.dispatch(set(product, true, 1));
   };
 
   render() {

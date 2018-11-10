@@ -10,6 +10,7 @@ import Header from './components/Header/Header';
 import store from '~/store';
 import renderScreens from '~/screens';
 import ErrorDialog from '~/components/ErrorDialog/ErrorDialog';
+import { success as successCart } from './store/cart/action';
 
 type Props = {
   // children: any,
@@ -18,18 +19,25 @@ type Props = {
 
 class App extends Component<Props, void> {
   state = {};
+  componentDidMount() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    store.dispatch(successCart(cart));
+  }
+
   render() {
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
           <React.Fragment>
             <CssBaseline />
-            <Header />
-            <ErrorDialog />
             <Router>
-              <Switch>
-                {renderScreens()}
-              </Switch>
+              <div>
+                <Header />
+                <ErrorDialog />
+                <Switch>
+                  {renderScreens()}
+                </Switch>
+              </div>
             </Router>
           </React.Fragment>
         </MuiThemeProvider>

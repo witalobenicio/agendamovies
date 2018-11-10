@@ -1,0 +1,135 @@
+@import "../../variables";
+
+.actionsContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.productsContainer {
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid #dfdfdf;
+}
+
+.topProductsContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #e9e9e9;
+  color: @secondaryColor;
+}
+
+.productCartContainer {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.productContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 60%;
+  padding: 16px;
+}
+
+.emptyCart {
+  text-align: center;
+  color: #a3a3a3;
+}
+
+.name {
+  color: @primaryColor;
+  font-size: 11pt;
+  margin-right: 20px;
+}
+
+.picture {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #fff;
+}
+
+.addRemoveContainer {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.quantityField {
+  width: 70px;
+  margin-right: 15px !important;
+  margin-left: 15px !important;
+  text-align: center;
+}
+
+.productName {
+  font-size: 18pt;
+  color: @primaryColor;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.infoTitle {
+  font-size: 14pt;
+  font-weight: 800;
+  color: #b7b7b7;
+  margin-bottom: 20px;
+}
+
+.info {
+  border-bottom: 1px solid #ddd;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.productDescription {
+  color: @gray;
+  font-size: 11pt;
+}
+
+.productPrice {
+  color: #858585;
+  font-size: 12pt;
+}
+
+.productPriceTotal {
+  color: @primaryColor;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.totalContainer {
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+.totalPriceContainer {
+  border-radius: 6px;
+  width: 20%;
+  background-color: #e9e9e9;
+  padding: 16px;
+}
+
+.totalTitle {
+  color: #666666;
+  font-size: 11pt;
+}
+
+.totalPrice {
+  color: @secondaryColorDark
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 import { createSelectorCreator, defaultMemoize } from 'reselect';
+import { compose } from 'recompose';
 import Immutable from 'immutable';
 
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,6 +20,7 @@ import { Money } from '~/common';
 
 type Props = {
   cart: any,
+  history: any,
 };
 
 function getTotal(cart) {
@@ -30,15 +33,19 @@ function getTotalQuantity(cart) {
     (cur.boughtQuantity) + (acc || 0), 0);
 }
 
-const Header = ({ cart }: Props) => (
+function onPressCart(history) {
+  history.replace('/cart/');
+}
+
+const Header = ({ cart, history }: Props) => (
   <AppBar position="static" color="primary">
     <div className={style.headerContent}>
       <Toolbar className={style.header}>
-        <Typography variant="h6" color="inherit" noWrap>
-          E-Master commerce
+        <Typography className={style.title} variant="h6" color="inherit" noWrap>
+          <Link to="/">E-Master commerce</Link>
         </Typography>
         <div className={style.rightContent}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={() => onPressCart(history)}>
             { cart.payload.length > 0 ?
               <Badge badgeContent={getTotalQuantity(cart.payload)} color="error">
                 <ShoppingBasketIcon className={style.bagIcon} />
@@ -73,4 +80,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default compose(connect(mapStateToProps), withRouter)(Header);

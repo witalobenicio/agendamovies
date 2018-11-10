@@ -187,6 +187,7 @@ module.exports = {
               emitError: false,
               failOnError: false,
               failOnWarning: false,
+              emitWarning: true,
             },
             loader: require.resolve('eslint-loader'),
           },

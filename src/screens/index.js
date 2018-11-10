@@ -8,6 +8,7 @@ export default function renderScreens() {
     <main className={style.main}>
       <Route exact path="/" component={routes.Products} />
       <Route exact path="/products/:id" component={routes.ProductDetail} />
+      <Route exact path="/cart/" component={routes.Cart} />
     </main>
   );
 }

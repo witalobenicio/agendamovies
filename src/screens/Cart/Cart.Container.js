@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Get } from '~/common';
-import ProductDetail from './ProductDetail';
+import Cart from './Cart';
 import { withRouter } from 'react-router-dom';
 import { createSelectorCreator, defaultMemoize } from 'reselect';
 import { compose } from 'recompose';
@@ -13,28 +13,34 @@ import get from '~/store/productDetail/action';
 import set from '~/store/cart/action';
 
 type Props = {
-  product: {
+  cart: {
     payload: {},
   },
   dispatch: () => void,
+  history: () => void,
 }
 
-class ProductsDetailContainer extends React.Component<Props, void> {
+class CartContainer extends React.Component<Props, void> {
   componentWillMount() {
     const id = Get(this.props, 'match.params.id');
     this.props.dispatch(get(id));
   }
 
-  onPressBuy = (product, e) => {
-    e.stopPropagation();
-    this.props.dispatch(set(product, true, 1));
+  onPressAddRemove = (quantity, product, increment) => {
+    this.props.dispatch(set(product, increment, quantity));
+  };
+
+  onPressBuyMore = () => {
+    const { history } = this.props;
+    history.push('/');
   };
 
   render() {
     return (
-      <ProductDetail
-        onPressBuy={this.onPressBuy}
-        product={this.props.product.payload}
+      <Cart
+        onPressAddRemove={this.onPressAddRemove}
+        onPressBuyMore={this.onPressBuyMore}
+        cart={this.props.cart.payload}
       />
     );
   }
@@ -42,17 +48,13 @@ class ProductsDetailContainer extends React.Component<Props, void> {
 
 const createImmutableSelector = createSelectorCreator(defaultMemoize, Immutable.is);
 
-const getProduct = createImmutableSelector([state => state], state =>
-  state.getIn(['productDetail']).toJS());
-
 const getCart = createImmutableSelector([state => state], state =>
   state.getIn(['cart']).toJS());
 
 function mapStateToProps(state) {
   return {
-    product: getProduct(state),
     cart: getCart(state),
   };
 }
 
-export default compose(connect(mapStateToProps), withRouter)(ProductsDetailContainer);
+export default compose(connect(mapStateToProps), withRouter)(CartContainer);

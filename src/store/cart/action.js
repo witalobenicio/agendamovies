@@ -42,7 +42,7 @@ export function failure({ error, payload }) {
   };
 }
 
-export default function setParams(product) {
+export default function setCart(product, increment, quantity) {
   return (dispatch, getState) => {
     const cart = getState().getIn(['cart']).toJS().payload;
     dispatch({
@@ -50,6 +50,8 @@ export default function setParams(product) {
       payload: {
         product,
         cart,
+        quantity,
+        increment,
       },
     });
   };
