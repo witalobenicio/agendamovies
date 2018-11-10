@@ -5,10 +5,7 @@
 import { Observable } from 'rxjs';
 import { each } from 'underscore';
 import param from 'jquery-param';
-// import { ajax } from 'rxjs/observable/dom/ajax';
-// import { isEmpty } from 'underscore';
 
-export const VERSION = 1;
 export const ENDPOINT = 'http://127.0.0.1:3000';
 
 const initialOptions = {
@@ -19,26 +16,8 @@ const initialOptions = {
   retries: 3,
   timeout: 30000,
 };
-//
-// const onError = (err, onClose = () => {}) => Observable.throw({ ...err.xhr.response, onClose });
-//
-// const onSuccess = response => {
-//   console.log(response);
-//   return response;
-// };
 
 export const endpoint = (URI: string = '') => `${ENDPOINT}${URI}`;
-
-// function prepare(ajax) {
-//   console.log('AJAX', ajax);
-//   if (ajax.responseText === '') return {};
-//   switch (ajax.getResponseHeader('content-type')) {
-//     case 'application/json;charset=UTF-8':
-//       return JSON.parse(ajax.response);
-//     default:
-//       return {};
-//   }
-// }
 
 function ajaxRequest(method, uri, data, options) {
   return new Observable(observer => {
@@ -76,6 +55,7 @@ function ajaxRequest(method, uri, data, options) {
             return;
           case 401:
           case 403:
+            // TODO authentication handling
             return;
           case 200:
           case 304:
