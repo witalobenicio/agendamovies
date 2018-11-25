@@ -2,27 +2,29 @@
 
 import { Map } from 'immutable';
 
-import { PRODUCTS_REQUEST, PRODUCTS_FAILURE, PRODUCTS_SUCCESS } from './action';
+import { TRENDING_MOVIES_REQUEST, TRENDING_MOVIES_FAILURE, TRENDING_MOVIES_SUCCESS } from './action';
 
 const initialState = Map({
   type: '',
-  payload: [],
+  payload: {
+    results: [],
+  },
 });
 
 function reducer(state = initialState, action): any {
   const { type } = action;
 
-  if (type === PRODUCTS_REQUEST) {
-    const { loading } = action;
-    return state.updateIn(['type'], () => type).updateIn(['loading'], () => loading).setIn(['payload'], []);
+  if (type === TRENDING_MOVIES_REQUEST) {
+    const { loading, payload } = action;
+    return state.updateIn(['type'], () => type).updateIn(['loading'], () => loading).setIn(['payload'], payload);
   }
 
-  if (type === PRODUCTS_FAILURE) {
+  if (type === TRENDING_MOVIES_FAILURE) {
     const { payload, loading } = action;
     return state.updateIn(['type'], () => type).updateIn(['loading'], () => loading).setIn(['payload'], payload);
   }
 
-  if (type === PRODUCTS_SUCCESS) {
+  if (type === TRENDING_MOVIES_SUCCESS) {
     const { payload, loading } = action;
     return state.updateIn(['type'], () => type).updateIn(['loading'], () => loading).setIn(['payload'], payload);
   }

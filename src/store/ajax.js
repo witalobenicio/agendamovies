@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 import { each } from 'underscore';
 import param from 'jquery-param';
 
-export const ENDPOINT = 'http://127.0.0.1:3000';
+export const ENDPOINT = 'https://api.themoviedb.org/3';
+const API_KEY = 'c6747bee1504f8a2baf858083f9e2d32';
 
 const initialOptions = {
   headers: {
@@ -17,7 +18,13 @@ const initialOptions = {
   timeout: 30000,
 };
 
-export const endpoint = (URI: string = '') => `${ENDPOINT}${URI}`;
+export const endpoint = (URI: string = '') => {
+  const url = `${ENDPOINT}${URI}`;
+  if (url.includes('?')) {
+    return `${url}&api_key=${API_KEY}&language=pt-BR`;
+  }
+  return `${url}?api_key=${API_KEY}&language=pt-BR`;
+};
 
 function ajaxRequest(method, uri, data, options) {
   return new Observable(observer => {
@@ -56,6 +63,9 @@ function ajaxRequest(method, uri, data, options) {
           case 401:
           case 403:
             // TODO authentication handling
+            return;
+          case 429:
+            // TODO request times handling
             return;
           case 200:
           case 304:

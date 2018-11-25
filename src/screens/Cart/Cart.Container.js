@@ -9,7 +9,6 @@ import { compose } from 'recompose';
 import Immutable from 'immutable';
 import connect from 'react-redux/es/connect/connect';
 
-import get from '~/store/productDetail/action';
 import set from '~/store/cart/action';
 
 type Props = {
@@ -23,7 +22,6 @@ type Props = {
 class CartContainer extends React.Component<Props, void> {
   componentWillMount() {
     const id = Get(this.props, 'match.params.id');
-    this.props.dispatch(get(id));
   }
 
   onPressAddRemove = (quantity, product, increment) => {

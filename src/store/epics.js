@@ -1,11 +1,13 @@
 import { combineEpics } from 'redux-observable';
 
 import cart from './cart/epic';
-import products from './products/epic';
-import productDetail from './productDetail/epic';
+import trendingMovies from './trendingMovies/epic';
+import movieDetail from './movieDetail/epic';
+import popularMovies from './popularMovies/epic';
 
 export default combineEpics(
   cart,
-  products,
-  productDetail,
+  movieDetail,
+  popularMovies,
+  trendingMovies,
 );

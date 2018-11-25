@@ -1,9 +1,9 @@
 import Cart from '~/screens/Cart';
-import Products from '~/screens/Products';
-import ProductDetail from '~/screens/ProductDetail';
+import Movies from '~/screens/Movies/Trending/index';
+import MovieDetail from '~/screens/MovieDetail';
 
 export default {
   Cart,
-  Products,
-  ProductDetail,
+  Movies,
+  MovieDetail,
 };

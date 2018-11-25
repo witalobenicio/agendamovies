@@ -2,24 +2,23 @@
 
 import React from 'react';
 import { Get } from '~/common';
-import ProductDetail from './ProductDetail';
+import MovieDetail from './MovieDetail';
 import { withRouter } from 'react-router-dom';
 import { createSelectorCreator, defaultMemoize } from 'reselect';
 import { compose } from 'recompose';
 import Immutable from 'immutable';
 import connect from 'react-redux/es/connect/connect';
 
-import get from '~/store/productDetail/action';
-import set from '~/store/cart/action';
+import get from '~/store/movieDetail/action';
 
 type Props = {
-  product: {
+  movie: {
     payload: {},
   },
   dispatch: () => void,
 }
 
-class ProductsDetailContainer extends React.Component<Props, void> {
+class MovieDetailContainer extends React.Component<Props, void> {
   componentWillMount() {
     const id = Get(this.props, 'match.params.id');
     this.props.dispatch(get(id));
@@ -27,14 +26,13 @@ class ProductsDetailContainer extends React.Component<Props, void> {
 
   onPressBuy = (product, e) => {
     e.stopPropagation();
-    this.props.dispatch(set(product, true, 1));
   };
 
   render() {
     return (
-      <ProductDetail
+      <MovieDetail
         onPressBuy={this.onPressBuy}
-        product={this.props.product.payload}
+        movie={this.props.movie.payload}
       />
     );
   }
@@ -42,17 +40,13 @@ class ProductsDetailContainer extends React.Component<Props, void> {
 
 const createImmutableSelector = createSelectorCreator(defaultMemoize, Immutable.is);
 
-const getProduct = createImmutableSelector([state => state], state =>
-  state.getIn(['productDetail']).toJS());
-
-const getCart = createImmutableSelector([state => state], state =>
-  state.getIn(['cart']).toJS());
+const getMovie = createImmutableSelector([state => state], state =>
+  state.getIn(['movieDetail']).toJS());
 
 function mapStateToProps(state) {
   return {
-    product: getProduct(state),
-    cart: getCart(state),
+    movie: getMovie(state),
   };
 }
 
-export default compose(connect(mapStateToProps), withRouter)(ProductsDetailContainer);
+export default compose(connect(mapStateToProps), withRouter)(MovieDetailContainer);

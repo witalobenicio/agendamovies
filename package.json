@@ -1,7 +1,7 @@
 {
-  "name": "react-challenge",
+  "name": "agenda-challenge",
   "version": "1.0.0",
-  "description": "Teste de conhecimento em react",
+  "description": "Teste para vaga de frontend no Agenda Edu",
   "main": "index.js",
   "scripts": {
     "start": "node scripts/start.js",
@@ -36,6 +36,7 @@
     "lodash": "^4.17.11",
     "lodash.camelcase": "^4.3.0",
     "mini-css-extract-plugin": "0.4.3",
+    "moment": "^2.22.2",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.1.0",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -48,6 +49,8 @@
     "react-dom": "^16.6.0",
     "react-redux": "5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-scroll-viewport": "^0.3.0",
+    "react-virtualized": "^9.21.0",
     "recompose": "^0.30.0",
     "redux": "4.0.0",
     "redux-immutable": "4.0.0",

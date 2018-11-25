@@ -4,6 +4,11 @@
   position: relative;
 }
 
+.rootContainer {
+  background: @primaryColor;
+  height: 100%;
+}
+
 .toolbarIcon {
   display: flex;
   align-items: center;
@@ -12,7 +17,19 @@
 }
 
 .main {
+}
+
+.mainContainer {
+  width: @containerWidth;
   padding-top: 30px;
-  max-width: @containerWidth;
+  height: 100%;
   margin: 0 auto;
+}
+
+@media @smartphones {
+  .mainContainer {
+    padding-top: 30px;
+    width: 100% !important;
+    margin: 0 auto;
+  }
 }

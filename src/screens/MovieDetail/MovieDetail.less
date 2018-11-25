@@ -1,0 +1,176 @@
+@import "../../variables";
+
+@bannerHeight: 600px;
+@gradientHeight: 300px;
+
+.card {
+  overflow: hidden;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.pictureContainer {
+  margin-top: -40px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 26px;
+}
+
+.buyContainer {
+  margin-top: 30px;
+}
+
+.picture {
+  width: 100%;
+}
+
+.movieName {
+  font-size: 18pt;
+  margin-bottom: 10px;
+  font-weight: 500;
+  line-height: inherit;
+}
+
+.infoTitle {
+  font-size: 14pt;
+  font-weight: 800;
+  color: #b7b7b7;
+  margin-bottom: 20px;
+}
+
+.info {
+  border-bottom: 1px solid #ddd;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.movieDescription {
+  color: @gray;
+  font-size: 11pt;
+}
+
+.priceTitle {
+  font-size: 18pt;
+  color: @gray;
+  font-weight: 500;
+}
+
+.moviePrice {
+  color: @secondaryColorDark;
+  font-size: 26pt;
+  font-weight: 700;
+}
+
+.infoContainer {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.banner {
+  width: 100%;
+  align-items: center;
+  max-height: @bannerHeight;
+  object-fit: cover;
+}
+
+.bannerBottomLinear {
+  background: rgba(231,55,39,0);
+  background: -moz-linear-gradient(top, rgba(231,55,39,0) 0%, rgba(231,55,39,0.04) 4%, rgba(34,34,34,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(231,55,39,0)), color-stop(4%, rgba(231,55,39,0.04)), color-stop(100%, rgba(34,34,34,1)));
+  background: -webkit-linear-gradient(top, rgba(231,55,39,0) 0%, rgba(231,55,39,0.04) 4%, rgba(34,34,34,1) 100%);
+  background: -o-linear-gradient(top, rgba(231,55,39,0) 0%, rgba(231,55,39,0.04) 4%, rgba(34,34,34,1) 100%);
+  background: -ms-linear-gradient(top, rgba(231,55,39,0) 0%, rgba(231,55,39,0.04) 4%, rgba(34,34,34,1) 100%);
+  background: linear-gradient(to bottom, rgba(231, 55, 39, 0) 0%, rgba(231, 55, 39, 0.04) 10%, #222222 98%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e73727', endColorstr='#222222', GradientType=0 );
+  position: absolute;
+  bottom: 0;
+  height: @gradientHeight;
+  width: 100%;
+}
+
+.movieNameContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.badgeVote {
+  background-color: transparent;
+  color: #FFF;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid @successColor;
+  position: relative;
+  margin-top: 10px;
+
+  span {
+    font-size: 12pt;
+    font-weight: 500;
+  }
+}
+
+.badgeHigh {
+  background-color: transparent;
+  border: 1px solid @successColor;
+  color: @successColor;
+}
+
+
+.badgeMedium {
+  background-color: transparent;
+  border: 1px solid @warningColor;
+  color: @warningColor;
+}
+
+
+.badgeSmall {
+  background-color: transparent;
+  border: 1px solid @dangerColor;
+  color: @dangerColor;
+}
+
+.moviePicture {
+  transform: none !important;
+}
+
+.movieCard {
+  cursor: pointer;
+  min-height: 226px;
+  padding-bottom: 10px;
+  margin: 20px 20px 36px;
+  background-color: #222222 !important;
+
+  .moviePicture {
+    max-width: 150px;
+    margin: -16px -16px -16px 16px;
+    border-radius: 5px;
+    align-self: baseline;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@media @smartphones {
+  .infoContainer {
+    width: calc(100% - 10px);
+  }
+
+  .movieCard {
+    min-height: 226px;
+    padding-bottom: 10px;
+    margin: 0px;
+    background-color: #222222 !important;
+  }
+
+  .bannerBottomLinear {
+    height: 100px;
+  }
+}

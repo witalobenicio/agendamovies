@@ -4,7 +4,7 @@ import { Switch, BrowserRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import './App.less';
+import styles from './App.less';
 import theme from './theme';
 import Header from './components/Header/Header';
 import store from '~/store';
@@ -31,7 +31,7 @@ class App extends Component<Props, void> {
           <React.Fragment>
             <CssBaseline />
             <Router>
-              <div>
+              <div className={styles.rootContainer}>
                 <Header />
                 <ErrorDialog />
                 <Switch>

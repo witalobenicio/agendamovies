@@ -1,14 +1,14 @@
 /* @flow */
 
 
-export const PRODUCT_DETAIL_REQUEST = 'PRODUCT_DETAIL_REQUEST';
-export const PRODUCT_DETAIL_SUCCESS = 'PRODUCT_DETAIL_SUCCESS';
-export const PRODUCT_DETAIL_FAILURE = 'PRODUCT_DETAIL_FAILURE';
+export const MOVIE_DETAIL_REQUEST = 'MOVIE_DETAIL_REQUEST';
+export const MOVIE_DETAIL_SUCCESS = 'MOVIE_DETAIL_SUCCESS';
+export const MOVIE_DETAIL_FAILURE = 'MOVIE_DETAIL_FAILURE';
 
 export function success(payload) {
   return dispatch => {
     dispatch({
-      type: PRODUCT_DETAIL_SUCCESS,
+      type: MOVIE_DETAIL_SUCCESS,
       loading: false,
       payload,
     });
@@ -18,20 +18,20 @@ export function success(payload) {
 export function failure(response) {
   return dispatch => {
     dispatch({
-      type: PRODUCT_DETAIL_FAILURE,
+      type: MOVIE_DETAIL_FAILURE,
       loading: false,
       payload: response,
     });
   };
 }
 
-export default function get(id) {
+export default function get(movieId) {
   return dispatch => {
     dispatch({
-      type: PRODUCT_DETAIL_REQUEST,
+      type: MOVIE_DETAIL_REQUEST,
       loading: true,
       payload: {
-        id,
+        movieId,
       },
     });
   };
