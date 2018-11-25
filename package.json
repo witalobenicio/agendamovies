@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Teste para vaga de frontend no Agenda Edu",
   "main": "index.js",
+  "engines": {
+    "npm": "5.6.0",
+    "node": "8.11.3"
+  },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
@@ -50,7 +54,6 @@
     "react-redux": "5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scroll-viewport": "^0.3.0",
-    "react-virtualized": "^9.21.0",
     "recompose": "^0.30.0",
     "redux": "4.0.0",
     "redux-immutable": "4.0.0",
@@ -67,7 +70,12 @@
     "url-loader": "1.1.1",
     "vanilla-masker": "^1.2.0",
     "webpack": "4.19.1",
-    "webpack-dev-server": "3.1.9"
+    "webpack-dev-server": "3.1.9",
+    "html-webpack-plugin": "4.0.0-alpha.2",
+    "webpack-manifest-plugin": "2.0.4",
+    "workbox-webpack-plugin": "3.6.3",
+    "fork-ts-checker-webpack-plugin-alt": "0.4.14",
+    "terser-webpack-plugin": "1.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.1.0",
@@ -90,11 +98,6 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
-    "fork-ts-checker-webpack-plugin-alt": "0.4.14",
-    "html-webpack-plugin": "4.0.0-alpha.2",
-    "terser-webpack-plugin": "1.1.0",
-    "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.3"
   },
   "eslintConfig": {
     "extends": "react-app",
