@@ -1,5 +1,5 @@
 {
-  "name": "agenda-challenge",
+  "name": "agenda-movies",
   "version": "1.0.0",
   "description": "Teste para vaga de frontend no Agenda Edu",
   "main": "index.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ezidio/react-challenge.git"
+    "url": "git+https://github.com/witalobenicio/agendamovies.git"
   },
   "author": "-",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/luizfilipe/react-challenge/issues"
+    "url": "https://github.com/witalobenicio/agendamovies/issues"
   },
-  "homepage": "https://github.com/luizfilipe/react-challenge#readme",
+  "homepage": "https://github.com/witalobenicio/agendamovies",
   "dependencies": {
     "@babel/preset-flow": "^7.0.0",
     "@material-ui/core": "^3.4.0",
