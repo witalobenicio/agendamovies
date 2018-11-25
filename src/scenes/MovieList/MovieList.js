@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { MovieItem, RecyclerList } from '~/components';
-import { InfiniteLoader, List, AutoSizer, WindowScroller, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 type Props = {
@@ -39,6 +38,7 @@ class MovieList extends React.Component<Props, void> {
             item={item}
           />
         )) }
+        <CircularProgress />
       </RecyclerList>
     );
   }
