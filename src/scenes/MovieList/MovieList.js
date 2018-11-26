@@ -45,40 +45,6 @@ class MovieList extends React.Component<Props, void> {
       </div>
     );
   }
-
-  // render() {
-  //   const { items, className } = this.props;
-  //   return (
-  //     <WindowScroller>
-  //       {({
-  //           height, width, isScrolling, onChildScroll,
-  //         }) => (
-  //           <InfiniteLoader
-  //             isRowLoaded={this.isRowLoaded}
-  //             loadMoreRows={this.loadMoreRows}
-  //             rowCount={items.length}
-  //           >
-  //             {({ onRowsRendered, registerChild }) => (
-  //               <List
-  //                 deferredMeasurementCache={this.cache}
-  //                 className={className}
-  //                 ref={registerChild}
-  //                 onScroll={onChildScroll}
-  //                 isScrolling={isScrolling}
-  //                 onRowsRendered={onRowsRendered}
-  //                 height={height - 90}
-  //                 rowHeight={280}
-  //                 width={width}
-  //                 rowCount={items.length}
-  //                 overscanRowCount={10}
-  //                 rowRenderer={this.renderItem}
-  //               />
-  //                   )}
-  //           </InfiniteLoader>
-  //       )}
-  //     </WindowScroller>
-  //   );
-  // }
 }
 
 export default MovieList;

@@ -7,6 +7,7 @@ import dialogVisibility from './dialogVisibility/reducer';
 import trendingMovies from './trendingMovies/reducer';
 import movieDetail from './movieDetail/reducer';
 import popularMovies from './popularMovies/reducer';
+import searchMovies from './searchMovies/reducer';
 
 export default function reducers() {
   return combineReducers({
@@ -15,5 +16,6 @@ export default function reducers() {
     movieDetail,
     popularMovies,
     trendingMovies,
+    searchMovies,
   });
 }

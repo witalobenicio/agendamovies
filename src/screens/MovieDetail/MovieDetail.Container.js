@@ -15,6 +15,7 @@ type Props = {
   movie: {
     payload: {},
   },
+  match: any,
   dispatch: () => void,
 }
 
@@ -22,6 +23,14 @@ class MovieDetailContainer extends React.Component<Props, void> {
   componentWillMount() {
     const id = Get(this.props, 'match.params.id');
     this.props.dispatch(get(id));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    (() => {
+      if (nextProps.match.params.id === this.props.match.params.id) return;
+      const id = Get(nextProps, 'match.params.id');
+      this.props.dispatch(get(id));
+    })();
   }
 
   onPressBuy = (product, e) => {

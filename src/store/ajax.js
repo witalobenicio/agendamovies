@@ -72,10 +72,6 @@ function ajaxRequest(method, uri, data, options) {
           default:
             observer.next(JSON.parse(ajax.response));
         }
-        const token = ajax.getResponseHeader('authentication');
-        if (token) {
-          sessionStorage.setItem('authenticationToken', token);
-        }
       }
     };
 
