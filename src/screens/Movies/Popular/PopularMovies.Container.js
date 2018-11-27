@@ -33,8 +33,6 @@ class PopularMoviesContainer extends React.Component<Props, void> {
   };
 
   render() {
-    console.log('MOVIES', this.props.movies);
-
     return (
       <PopularMovies
         onPressFavorite={this.onPressBuy}

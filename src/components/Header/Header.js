@@ -115,7 +115,7 @@ class Header extends Component<Props> {
     const autosuggestProps = {
       renderInputComponent,
       onSuggestionClick: () => {},
-      suggestions: this.state.suggestions,
+      suggestions: this.state.suggestions || [],
       getSuggestionValue: () => '',
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,

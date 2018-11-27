@@ -1,6 +1,7 @@
 /* @flow */
 
 import { Get } from '~/common';
+import { show } from '~/store/snackVisibility/action';
 
 export const TRENDING_MOVIES_REQUEST = 'TRENDING_MOVIES_REQUEST';
 export const TRENDING_MOVIES_SUCCESS = 'TRENDING_MOVIES_SUCCESS';
@@ -10,7 +11,6 @@ export function success(payload) {
   return (dispatch, getState) => {
     const movies = getState().getIn(['trendingMovies']).toJS();
     const results = Get(movies, 'payload.results');
-    console.log('RESULTS', results, movies);
     dispatch({
       type: TRENDING_MOVIES_SUCCESS,
       loading: false,
@@ -29,6 +29,7 @@ export function failure(response) {
       loading: false,
       payload: response,
     });
+    dispatch(show(response.status_code));
   };
 }
 

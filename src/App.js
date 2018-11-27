@@ -10,7 +10,8 @@ import Header from './components/Header/Header';
 import store from '~/store';
 import renderScreens from '~/screens';
 import ErrorDialog from '~/components/ErrorDialog/ErrorDialog';
-import { success as successCart } from './store/cart/action';
+import BottomTabs from './components/BottomTabs/BottomTabs';
+import ErrorSnack from '~/components/ErrorSnack/ErrorSnack';
 
 type Props = {
   // children: any,
@@ -20,8 +21,6 @@ type Props = {
 class App extends Component<Props, void> {
   state = {};
   componentDidMount() {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    store.dispatch(successCart(cart));
   }
 
   render() {
@@ -34,9 +33,11 @@ class App extends Component<Props, void> {
               <div className={styles.rootContainer}>
                 <Header />
                 <ErrorDialog />
+                <ErrorSnack />
                 <Switch>
                   {renderScreens()}
                 </Switch>
+                <BottomTabs />
               </div>
             </Router>
           </React.Fragment>

@@ -9,6 +9,7 @@ import Immutable from 'immutable';
 import connect from 'react-redux/es/connect/connect';
 
 import get from '~/store/trendingMovies/action';
+import favorite from '~/store/favoriteMovie/action';
 
 type Props = {
   movies: {
@@ -24,6 +25,9 @@ class TrendingMoviesContainer extends React.Component<Props, void> {
   };
   componentDidMount() {
     this.props.dispatch(get());
+    for (let i = 0; i < 60; i++) {
+      fetch(`https://api.themoviedb.org/3/search/movie?query=${i}`);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,8 +44,9 @@ class TrendingMoviesContainer extends React.Component<Props, void> {
     history.push(`movies/${movie.id}`);
   };
 
-  onPressFavorite = (movie) => {
-
+  onPressFavorite = (movie, e) => {
+    console.log('MOVIE', movie);
+    this.props.dispatch(favorite(movie));
   };
 
   loadMore = () => {
@@ -58,7 +63,7 @@ class TrendingMoviesContainer extends React.Component<Props, void> {
     })();
     return (
       <TredingMovies
-        onPressFavorite={this.onPressBuy}
+        onPressFavorite={this.onPressFavorite}
         onPressMovie={this.onPressMovie}
         loadMore={this.loadMore}
         movies={movies}

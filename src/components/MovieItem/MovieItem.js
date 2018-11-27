@@ -82,6 +82,10 @@ const MovieItem = (props: Props) => {
           </div>
         </div>
         <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            props.onPressFavorite(props.item, e);
+          }}
           variant="fab"
           mini
           color="secondary"

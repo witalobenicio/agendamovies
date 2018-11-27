@@ -7,7 +7,10 @@ import { each } from 'underscore';
 import param from 'jquery-param';
 
 export const ENDPOINT = 'https://api.themoviedb.org/3';
+export const ENDPOINT_FIREBASE = 'https://agenda-movies.firebaseio.com';
+
 const API_KEY = 'c6747bee1504f8a2baf858083f9e2d32';
+const API_KEY_FIREBASE = 'AIzaSyB9y2eb0nIRbn82WQ4w6yhnCRlhh_g0P0s';
 
 const initialOptions = {
   headers: {
@@ -65,7 +68,7 @@ function ajaxRequest(method, uri, data, options) {
             // TODO authentication handling
             return;
           case 429:
-            // TODO request times handling
+            observer.error(JSON.parse(ajax.response));
             return;
           case 200:
           case 304:
