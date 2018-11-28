@@ -25,4 +25,4 @@ jobs:
     - run: CI=false yarn run build
     - run:
         name: Deploy to S3
-        command: aws s3 sync build s3://agendamovies
+        command: aws s3 sync build s3://agendamovies --acl public-read
