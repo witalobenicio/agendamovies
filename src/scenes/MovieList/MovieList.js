@@ -26,7 +26,7 @@ class MovieList extends React.Component<Props, void> {
         <RecyclerList
           onLoadMore={this.loadMoreRows}
           class="list"
-          overscan={10}
+          overscan={20}
         >
           { items.map(item => (
             <MovieItem
