@@ -22,4 +22,4 @@ jobs:
         - ~/.cache/yarn
         key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
-    - run: REACT_APP_STAGE=$CIRCLE_BRANCH yarn run build
+    - run: yarn run build
