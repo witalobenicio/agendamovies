@@ -2,29 +2,27 @@
 
 import { Map } from 'immutable';
 
-import { POPULAR_MOVIES_REQUEST, POPULAR_MOVIES_FAILURE, POPULAR_MOVIES_SUCCESS } from './action';
+import { DELETE_FAVORITE_MOVIE_REQUEST, DELETE_FAVORITE_MOVIE_FAILURE, DELETE_FAVORITE_MOVIE_SUCCESS } from './action';
 
 const initialState = Map({
   type: '',
-  payload: {
-    results: [],
-  },
+  payload: {},
 });
 
 function reducer(state = initialState, action): any {
   const { type } = action;
 
-  if (type === POPULAR_MOVIES_REQUEST) {
+  if (type === DELETE_FAVORITE_MOVIE_REQUEST) {
     const { loading, payload } = action;
     return state.updateIn(['type'], () => type).updateIn(['loading'], () => loading).setIn(['payload'], payload);
   }
 
-  if (type === POPULAR_MOVIES_FAILURE) {
+  if (type === DELETE_FAVORITE_MOVIE_FAILURE) {
     const { payload, loading } = action;
     return state.updateIn(['type'], () => type).updateIn(['loading'], () => loading).setIn(['payload'], payload);
   }
 
-  if (type === POPULAR_MOVIES_SUCCESS) {
+  if (type === DELETE_FAVORITE_MOVIE_SUCCESS) {
     const { payload, loading } = action;
     return state.updateIn(['type'], () => type).updateIn(['loading'], () => loading).setIn(['payload'], payload);
   }

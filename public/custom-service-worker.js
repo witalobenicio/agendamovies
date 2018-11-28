@@ -46,32 +46,33 @@
 //   workbox.strategies.networkFirst(),
 // );
 
-const cacheName = 'agenda-cache';
-const cacheStatic = 'agenda-static';
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(cacheStatic)
-    .then((cache) => {
-      cache.addAll([
-        'logo.png', // offline page
-        'bundle.css',
-        'bundle.js',
-        'favicon.ico',
-      ]);
-    }));
-});
-
-self.addEventListener('activate', (event) => {
-  console.log('Activating Service Worker ....', event);
-  event.waitUntil(caches.keys()
-    .then((keyList) => Promise.all(keyList.map((key) => {
-      if (key !== cacheStatic && key !== cacheName) {
-        return caches.delete(key);
-      }
-    }))));
-  return self.clients.claim();
-});
-
+// const cacheName = process.env.REACT_APP_CACHE_DYNAMIC;
+// const cacheStatic = process.env.REACT_APP_CACHE_STATIC;
+//
+// self.addEventListener('install', (event) => {
+//   event.waitUntil(caches.open(cacheStatic)
+//     .then((cache) => {
+//       cache.addAll([
+//         'logo.png',
+//         'custom-service-worker.js',
+//         'bundle.css',
+//         'bundle.js',
+//         'favicon.ico',
+//       ]);
+//     }));
+// });
+//
+// self.addEventListener('activate', (event) => {
+//   console.log('Activating Service Worker ....', event);
+//   event.waitUntil(caches.keys()
+//     .then((keyList) => Promise.all(keyList.map((key) => {
+//       if (key !== cacheStatic && key !== cacheName) {
+//         return caches.delete(key);
+//       }
+//     }))));
+//   return self.clients.claim();
+// });
+//
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     // Try the network
@@ -90,3 +91,27 @@ self.addEventListener('fetch', (event) => {
             return res;
           })));
 });
+
+// self.addEventListener('fetch', function(event) {
+//   event.respondWith(caches.match(event.request).then(function(response) {
+//     // caches.match() always resolves
+//     // but in case of success response will have value
+//     if (response !== undefined) {
+//       return response;
+//     } else {
+//       return fetch(event.request).then(function (response) {
+//         // response may be used only once
+//         // we need to save clone to put one copy in cache
+//         // and serve second one
+//         let responseClone = response.clone();
+//
+//         caches.open('v1').then(function (cache) {
+//           cache.put(event.request, responseClone);
+//         });
+//         return response;
+//       }).catch(function () {
+//         return caches.match('/sw-test/gallery/myLittleVader.jpg');
+//       });
+//     }
+//   }));
+// });

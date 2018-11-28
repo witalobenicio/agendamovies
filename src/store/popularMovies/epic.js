@@ -9,9 +9,9 @@ import AjaxRequest from '../ajax';
 const trendingMovies = (action$: any) =>
   action$
     .ofType(POPULAR_MOVIES_REQUEST)
-    .map(({ payload }) => payload)
-    .mergeMap(() =>
-      AjaxRequest('get', '/popular')
+    .map(({ data }) => data)
+    .mergeMap(({ page }) =>
+      AjaxRequest('get', `/movie/popular?page=${page}`)
         .flatMap((response) => Observable.of(success(response)))
         .catch(err => Observable.of(failure(err))));
 

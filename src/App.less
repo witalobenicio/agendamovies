@@ -1,12 +1,14 @@
 @import "variables";
 
+body {
+  background-color: @primaryColor !important;
+}
+
 .appbar {
   position: relative;
 }
 
 .rootContainer {
-  background: @primaryColor;
-  height: 100%;
 }
 
 .toolbarIcon {
@@ -28,7 +30,7 @@
 
 @media @smartphones {
   .mainContainer {
-    padding-top: 30px;
+    padding-top: 0px !important;
     width: 100% !important;
     margin: 0 auto;
   }

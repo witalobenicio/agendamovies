@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: rdfriedl/circleci-node-aws
+
+    working_directory: ~/repo
+
+    steps:
+    - checkout
+    - run: rm -rf node_modules
+
+    - restore_cache:
+        keys:
+        - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - yarn-packages-v1-{{ .Branch }}-
+        - yarn-packages-v1-
+    - run: yarn install --ignore-engines
+
+    - save_cache:
+        paths:
+        - ~/.cache/yarn
+        key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+    - run: REACT_APP_STAGE=$CIRCLE_BRANCH yarn run build
+    - run: ls build/
+  deployment:
+    staging:
+      branch: master
+      codedeploy:
+        agendamovies:
+          deployment_group: CircleCiGroup

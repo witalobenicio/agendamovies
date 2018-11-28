@@ -1,19 +1,18 @@
-import firebase from 'firebase';
+import firebase from '~/firebase';
 
 function read(ref, callback) {
   const myRef = firebase.database().ref(ref);
   if (callback) {
-    return myRef.on('value', (snapshot) => {
+    myRef.on('value', (snapshot) => {
       callback(snapshot.val());
     });
+    return null;
   }
-  return myRef.once('value');
+  return myRef.once('value').then((response) => console.log('RESPONSE', response));
 }
 
 function set(ref, payload) {
   const promise = firebase.database().ref(ref).set(payload);
-  promise.then((response) => console.log('RESPONSE FROM SET', response));
-  console.log('PROMISE', promise);
   return promise;
 }
 

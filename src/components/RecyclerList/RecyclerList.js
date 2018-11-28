@@ -83,6 +83,7 @@ class ScrollViewport extends Component<Props, void> {
 
     // compute estimated height based on first item height and number of items:
     const estimatedHeight = rowHeight * children.length;
+    console.log('ESTIMATED HEIGHT', estimatedHeight, rowHeight, children.length);
     if (typeof props.style === 'string') {
       props.style += ` height:${estimatedHeight}px;`;
     } else {

@@ -21,13 +21,13 @@ export function success(payload) {
 }
 
 export function failure(response) {
-  show(response.status_code);
   return dispatch => {
     dispatch({
       type: SEARCH_MOVIES_FAILURE,
       loading: false,
       payload: response,
     });
+    dispatch(show(response.status_code));
   };
 }
 
