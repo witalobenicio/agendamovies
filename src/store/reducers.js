@@ -2,6 +2,7 @@
 
 import { combineReducers } from 'redux-immutable';
 
+import deleteFavoriteMovie from './deleteFavoriteMovie/reducer';
 import dialogVisibility from './dialogVisibility/reducer';
 import favoriteMovie from './favoriteMovie/reducer';
 import favoriteMovies from './favoriteMovies/reducer';
@@ -13,6 +14,7 @@ import snackVisibility from './snackVisibility/reducer';
 
 export default function reducers() {
   return combineReducers({
+    deleteFavoriteMovie,
     dialogVisibility,
     favoriteMovie,
     favoriteMovies,

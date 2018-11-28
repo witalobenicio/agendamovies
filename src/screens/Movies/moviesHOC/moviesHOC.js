@@ -1,5 +1,6 @@
 import React from 'react';
 import favorite from '../../../store/favoriteMovie/action';
+import deleteFavorite from '../../../store/deleteFavoriteMovie/action';
 import { createSelectorCreator, defaultMemoize } from 'reselect';
 import Immutable from 'immutable';
 import { compose } from 'recompose';
@@ -41,8 +42,9 @@ export default function moviesHOC(get, moviesStore) {
       history.push(`movies/${movie.id}`);
     };
 
-    onPressFavorite = (movie) => {
-      this.props.dispatch(favorite(movie));
+    onPressFavorite = (movie, isFavorited) => {
+      const request = isFavorited ? deleteFavorite : favorite;
+      this.props.dispatch(request(movie));
     };
 
     loadMore = () => {

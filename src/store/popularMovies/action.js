@@ -2,6 +2,7 @@
 
 
 import Get from '../../common/Get';
+import { show } from '../snackVisibility/action';
 
 export const POPULAR_MOVIES_REQUEST = 'POPULAR_MOVIES_REQUEST';
 export const POPULAR_MOVIES_SUCCESS = 'POPULAR_MOVIES_SUCCESS';
@@ -23,12 +24,20 @@ export function success(payload) {
 }
 
 export function failure(response) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const movies = getState().getIn(['popularMovies']).toJS();
+    const payload = Get(movies, 'payload');
+    const results = Get(payload, 'results');
     dispatch({
       type: POPULAR_MOVIES_FAILURE,
       loading: false,
-      payload: response,
+      error: response,
+      payload: {
+        ...payload,
+        results: results ? results.concat(payload.results) : payload.results,
+      },
     });
+    dispatch(show(response.status_code));
   };
 }
 

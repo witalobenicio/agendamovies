@@ -21,11 +21,13 @@ class MovieList extends React.Component<Props, void> {
 
   render() {
     const { items, totalItems = 20000, loading = false } = this.props;
+    console.log('ITEM LENGTH', items.length);
     return (
       <div>
         <RecyclerList
           onLoadMore={this.loadMoreRows}
           class="list"
+          defaultRowHeight={170}
           overscan={20}
         >
           { items.map(item => (
@@ -35,14 +37,14 @@ class MovieList extends React.Component<Props, void> {
               item={item}
             />
           )) }
-          { loading || (items && items.length < totalItems) ?
-            <div className={style.progressContainer}>
-              <CircularProgress color="secondary" />
-            </div>
-            :
-            null
-          }
         </RecyclerList>
+        { loading || (items && items.length < totalItems) ?
+          <div className={style.progressContainer}>
+            <CircularProgress color="secondary" />
+          </div>
+          :
+          null
+        }
       </div>
     );
   }

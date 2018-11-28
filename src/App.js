@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { Switch, BrowserRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import { createSelectorCreator, defaultMemoize } from 'reselect';
+import Immutable from 'immutable';
+
+import favorite from '~/store/favoriteMovies/action';
 
 import styles from './App.less';
 import theme from './theme';
@@ -21,6 +25,7 @@ type Props = {
 class App extends Component<Props, void> {
   state = {};
   componentDidMount() {
+    store.dispatch(favorite());
   }
 
   render() {

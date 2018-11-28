@@ -101,7 +101,7 @@ const MovieItem = (props: Props) => {
         <Button
           onClick={(e) => {
             e.stopPropagation();
-            props.onPressFavorite(props.item, e);
+            props.onPressFavorite(props.item, isFavorited);
           }}
           variant="fab"
           mini

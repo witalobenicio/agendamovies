@@ -1,15 +1,15 @@
 /* @flow */
 
-export const FAVORITE_MOVIE_REQUEST = 'FAVORITE_MOVIE_REQUEST';
-export const FAVORITE_MOVIE_SUCCESS = 'FAVORITE_MOVIE_SUCCESS';
-export const FAVORITE_MOVIE_FAILURE = 'FAVORITE_MOVIE_FAILURE';
+import getFavoriteMovies from '../favoriteMovies/action';
 
-import getFavoriteMovies from '~/store/favoriteMovies/action';
+export const DELETE_FAVORITE_MOVIE_REQUEST = 'DELETE_FAVORITE_MOVIE_REQUEST';
+export const DELETE_FAVORITE_MOVIE_SUCCESS = 'DELETE_FAVORITE_MOVIE_SUCCESS';
+export const DELETE_FAVORITE_MOVIE_FAILURE = 'DELETE_FAVORITE_MOVIE_FAILURE';
 
 export function success(payload) {
   return (dispatch) => {
     dispatch({
-      type: FAVORITE_MOVIE_SUCCESS,
+      type: DELETE_FAVORITE_MOVIE_SUCCESS,
       loading: false,
       payload,
     });
@@ -20,7 +20,7 @@ export function success(payload) {
 export function failure(response) {
   return dispatch => {
     dispatch({
-      type: FAVORITE_MOVIE_FAILURE,
+      type: DELETE_FAVORITE_MOVIE_FAILURE,
       loading: false,
       payload: response,
     });
@@ -30,7 +30,7 @@ export function failure(response) {
 export default function set(movie) {
   return (dispatch) => {
     dispatch({
-      type: FAVORITE_MOVIE_REQUEST,
+      type: DELETE_FAVORITE_MOVIE_REQUEST,
       loading: true,
       payload: {
         movie,
