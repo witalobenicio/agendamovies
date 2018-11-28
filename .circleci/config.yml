@@ -22,4 +22,4 @@ jobs:
         - ~/.cache/yarn
         key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
-    - run: yarn run build
+    - run: CI=false yarn run build
