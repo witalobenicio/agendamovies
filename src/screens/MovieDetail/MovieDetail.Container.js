@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { createSelectorCreator, defaultMemoize } from 'reselect';
 import { compose } from 'recompose';
 import Immutable from 'immutable';
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 
 import get from '~/store/movieDetail/action';
 

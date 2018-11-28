@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 import { each } from 'underscore';
 import param from 'jquery-param';
 
+const TYPE_MOVIES = 'movies';
+const TYPE_FIREBASE = 'firebase';
+
 export const ENDPOINT = 'https://api.themoviedb.org/3';
 export const ENDPOINT_FIREBASE = 'https://agenda-movies.firebaseio.com';
-
-const API_KEY = 'c6747bee1504f8a2baf858083f9e2d32';
-const API_KEY_FIREBASE = 'AIzaSyB9y2eb0nIRbn82WQ4w6yhnCRlhh_g0P0s';
 
 const initialOptions = {
   headers: {
@@ -23,10 +23,20 @@ const initialOptions = {
 
 export const endpoint = (URI: string = '') => {
   const url = `${ENDPOINT}${URI}`;
+  const API_KEY = process.env.REACT_APP_MOVIESDB_API_KEY;
   if (url.includes('?')) {
     return `${url}&api_key=${API_KEY}&language=pt-BR`;
   }
   return `${url}?api_key=${API_KEY}&language=pt-BR`;
+};
+
+export const endpointFirebase = (URI: string = '') => {
+  const url = `${ENDPOINT_FIREBASE}${URI}`;
+  const API_KEY = process.env.REACT_APP_FIREBASE_DATABASE_SECRET;
+  if (url.includes('?')) {
+    return `${url}&auth=${API_KEY}`;
+  }
+  return `${url}?auth=${API_KEY}`;
 };
 
 function ajaxRequest(method, uri, data, options) {
@@ -84,10 +94,11 @@ function ajaxRequest(method, uri, data, options) {
   });
 }
 
-export default (method, uri, data = null, options = initialOptions) => Observable.of({})
-  .mergeMap(() => ajaxRequest(
-    method,
-    endpoint(uri),
-    data,
-    Object.assign(options, { retry: false }),
-  ).map(response => response));
+export default (method, uri, data = null, options = initialOptions, endpointType = TYPE_MOVIES) =>
+  Observable.of({})
+    .mergeMap(() => ajaxRequest(
+      method,
+      endpointType === TYPE_MOVIES ? endpoint(uri) : endpointFirebase(uri),
+      data,
+      Object.assign(options, { retry: false }),
+    ).map(response => response));

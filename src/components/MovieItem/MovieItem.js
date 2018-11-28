@@ -10,6 +10,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import style from './MovieItem.less';
 import { Image } from '~/components';
 import moment from 'moment';
+import { createSelectorCreator, defaultMemoize } from 'reselect';
+import Immutable from 'immutable';
+import { connect } from 'react-redux';
 
 type Props = {
   item: {
@@ -18,6 +21,7 @@ type Props = {
     price: number,
     picture: string,
   },
+  movies: any,
   onPressFavorite: () => void,
   onPressMovie: () => void,
   // description: string,
@@ -26,6 +30,10 @@ type Props = {
   // chipType: string,
   // quantity: number,
 };
+
+function getFavorited(movies, id) {
+  return movies.find(movie => movie.id === id);
+}
 
 function getBadgeClass(voteNumber) {
   return (() => {
@@ -43,6 +51,15 @@ const MovieItem = (props: Props) => {
     vote_average: voteAverage,
     adult, release_date: releaseDate,
   } = props.item;
+
+  const movies = (() => {
+    if (props.movies.payload && props.movies.payload.results) {
+      return props.movies.payload.results;
+    }
+    return [];
+  })();
+
+  const isFavorited = getFavorited(movies, id);
   return (
     <Grid item key={id} lg={6} sm={12} style={{ margin: '0 auto' }}>
       <Paper
@@ -88,7 +105,7 @@ const MovieItem = (props: Props) => {
           }}
           variant="fab"
           mini
-          color="secondary"
+          color={isFavorited ? 'secondary' : ''}
           aria-label="Favorite"
           className={style.favoriteButton}
         >
@@ -99,4 +116,15 @@ const MovieItem = (props: Props) => {
   );
 };
 
-export default MovieItem;
+const createImmutableSelector = createSelectorCreator(defaultMemoize, Immutable.is);
+
+const getFavoriteMovies = createImmutableSelector([state => state], state =>
+  state.getIn(['favoriteMovies']).toJS());
+
+function mapStateToProps(state) {
+  return {
+    movies: getFavoriteMovies(state),
+  };
+}
+
+export default connect(mapStateToProps)(MovieItem);

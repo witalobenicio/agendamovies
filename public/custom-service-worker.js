@@ -46,8 +46,8 @@
 //   workbox.strategies.networkFirst(),
 // );
 
-const cacheName = 'agenda-cache';
-const cacheStatic = 'agenda-static';
+const cacheName = process.env.REACT_APP_CACHE_DYNAMIC;
+const cacheStatic = process.env.REACT_APP_CACHE_STATIC;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(cacheStatic)

@@ -7,16 +7,52 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 import style from './BottomTabs.less';
+import { withRouter } from 'react-router-dom';
 
-type Props = {}
+type Props = {
+  history: any,
+}
+
+function getInitialValue(pathname) {
+  if (pathname === '/') return 0;
+  if (pathname.includes('/trending')) return 1;
+  if (pathname.includes('/favorites')) return 2;
+  return 0;
+}
 
 class BottomTabs extends React.PureComponent<Props, void> {
-  state = {
-    value: 0,
-  };
+  constructor(props) {
+    super(props);
+    const { history } = props;
+    const { pathname } = history.location;
+    this.state = {
+      value: getInitialValue(pathname),
+    };
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
+    const { history } = this.props;
+    const { pathname } = history.location;
+    switch (value) {
+      case 0:
+        if (pathname !== '/') {
+          history.replace('/');
+        }
+        break;
+      case 1:
+        if (!pathname.includes('/trending')) {
+          history.replace('/trending');
+        }
+        break;
+      case 2:
+        if (!pathname.includes('/favorites')) {
+          history.replace('/favorites');
+        }
+        break;
+      default:
+        break;
+    }
   };
 
   render() {
@@ -48,4 +84,4 @@ class BottomTabs extends React.PureComponent<Props, void> {
   }
 }
 
-export default BottomTabs;
+export default withRouter(BottomTabs);

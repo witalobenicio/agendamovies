@@ -11,7 +11,7 @@ const trendingMovies = (action$: any) =>
     .ofType(POPULAR_MOVIES_REQUEST)
     .map(({ payload }) => payload)
     .mergeMap(() =>
-      AjaxRequest('get', '/popular')
+      AjaxRequest('get', '/movie/popular')
         .flatMap((response) => Observable.of(success(response)))
         .catch(err => Observable.of(failure(err))));
 

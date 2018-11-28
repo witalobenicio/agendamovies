@@ -130,17 +130,62 @@
 }
 
 @media @smartphones {
-  .infoContainer {
-    display: block;
+  .movieInfo {
+    margin: 10px 0px 0px;
+    padding: 0px;
   }
 
-  .movieInfo {
-    margin-top: 30px;
+  .movieName {
+    font-size: 10pt;
+  }
+
+  .subInfo {
+    margin-bottom: 5px;
+  }
+
+  .movieDescription {
+    font-size: 9pt;
+    display: inline-block; /* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
+    line-height: 1.2em;
+    margin-right: 10px;
   }
 
   .favoriteButton {
     top: -10px;
     right: 10px;
+  }
+
+  .movieCard {
+    min-height: 80px;
+    margin: 16px;
+
+    .moviePicture {
+      max-width: 70px;
+      margin: 10px;
+    }
+  }
+
+  .badgeVote {
+    background-color: @successColor;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    position: absolute;
+    top: -10px;
+    left: 70px;
+
+    span {
+      font-size: 13px;
+      font-weight: 500;
+    }
   }
 }
 
