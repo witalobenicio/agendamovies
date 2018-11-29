@@ -35,6 +35,8 @@ function registerValidSW(swUrl) {
               // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
             }
+          } else {
+            console.log('SW NOT INSTALLED');
           }
         };
       };
