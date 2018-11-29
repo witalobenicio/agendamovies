@@ -34,7 +34,12 @@ export function configureStore() {
     actionTransformer: action => action,
   });
 
-  store = createStore(reducers(), Map({}), applyMiddleware(thunk, epicMiddleware, logger));
+  store = (() => {
+    if (process.env.NODE_ENV === 'production') {
+      return createStore(reducers(), Map({}), applyMiddleware(thunk, epicMiddleware));
+    }
+    return createStore(reducers(), Map({}), applyMiddleware(thunk, epicMiddleware, logger));
+  })();
   return store;
 }
 
