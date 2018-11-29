@@ -1,5 +1,5 @@
 /* @flow */
-/* eslint-disable no-restricted-globals,prefer-const */
+/* eslint-disable no-restricted-globals,prefer-const,no-bitwise */
 import React, { Component } from 'react';
 
 const EVENT_OPTS = {
@@ -83,7 +83,6 @@ class ScrollViewport extends Component<Props, void> {
 
     // compute estimated height based on first item height and number of items:
     const estimatedHeight = rowHeight * children.length;
-    console.log('ESTIMATED HEIGHT', estimatedHeight, rowHeight, children.length);
     if (typeof props.style === 'string') {
       props.style += ` height:${estimatedHeight}px;`;
     } else {
@@ -125,6 +124,7 @@ class ScrollViewport extends Component<Props, void> {
         <div style={{
           position: 'relative',
           top: start * rowHeight,
+          paddingBottom: 70,
           // display: 'flex',
           // flexWrap: 'wrap',
         }}

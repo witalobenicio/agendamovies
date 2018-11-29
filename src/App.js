@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { Switch, BrowserRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { createSelectorCreator, defaultMemoize } from 'reselect';
-import Immutable from 'immutable';
+import { unregister } from './serviceWorker';
 
 import favorite from '~/store/favoriteMovies/action';
 
@@ -26,6 +25,10 @@ class App extends Component<Props, void> {
   state = {};
   componentDidMount() {
     store.dispatch(favorite());
+  }
+
+  componentWillUnmount() {
+    unregister();
   }
 
   render() {

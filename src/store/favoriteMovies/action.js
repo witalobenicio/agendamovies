@@ -1,5 +1,7 @@
 /* @flow */
 
+import Get from '../../common/Get';
+
 export const FAVORITE_MOVIES_REQUEST = 'FAVORITE_MOVIES_REQUEST';
 export const FAVORITE_MOVIES_SUCCESS = 'FAVORITE_MOVIES_SUCCESS';
 export const FAVORITE_MOVIES_FAILURE = 'FAVORITE_MOVIES_FAILURE';
@@ -24,14 +26,14 @@ export function failure(response) {
   };
 }
 
-export default function set(movie) {
-  return (dispatch) => {
+export default function set() {
+  return (dispatch, getState) => {
+    const movies = getState().getIn(['favoriteMovies']).toJS();
+    const payload = Get(movies, 'payload');
     dispatch({
       type: FAVORITE_MOVIES_REQUEST,
       loading: true,
-      payload: {
-        movie,
-      },
+      payload,
     });
   };
 }

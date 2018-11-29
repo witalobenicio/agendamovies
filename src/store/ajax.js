@@ -7,7 +7,7 @@ import { each } from 'underscore';
 import param from 'jquery-param';
 
 const TYPE_MOVIES = 'movies';
-const TYPE_FIREBASE = 'firebase';
+// const TYPE_FIREBASE = 'firebase';
 
 export const ENDPOINT = 'https://api.themoviedb.org/3';
 export const ENDPOINT_FIREBASE = 'https://agenda-movies.firebaseio.com';

@@ -2,11 +2,8 @@
 /* @flow */
 
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Image from '~/components/Image/Image';
-
-import { Money } from '~/common';
 
 import movieDetailStyle from './MovieDetail.less';
 import movieStyle from '../../components/MovieItem/MovieItem.less';
@@ -42,7 +39,7 @@ class MovieDetail extends React.Component<Props, void> {
   render() {
     const { movie } = this.props;
     const {
-      id, title,
+      title,
       poster_path: posterPath,
       backdrop_path: backdropPath,
       overview,

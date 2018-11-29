@@ -2,6 +2,7 @@
 
 import { Get } from '~/common';
 import { show } from '~/store/snackVisibility/action';
+import _ from 'lodash';
 
 export const TRENDING_MOVIES_REQUEST = 'TRENDING_MOVIES_REQUEST';
 export const TRENDING_MOVIES_SUCCESS = 'TRENDING_MOVIES_SUCCESS';
@@ -16,18 +17,25 @@ export function success(payload) {
       loading: false,
       payload: {
         ...payload,
-        results: results ? results.concat(payload.results) : payload.results,
+        results: results ? _.unionBy(results, payload.results, 'id') : payload.results,
       },
     });
   };
 }
 
 export function failure(response) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const movies = getState().getIn(['popularMovies']).toJS();
+    const payload = Get(movies, 'payload');
+    const results = Get(payload, 'results');
     dispatch({
       type: TRENDING_MOVIES_FAILURE,
       loading: false,
-      payload: response,
+      error: response,
+      payload: {
+        ...payload,
+        results: results ? _.unionBy(results, payload.results, 'id') : payload.results,
+      },
     });
     dispatch(show(response.status_code));
   };

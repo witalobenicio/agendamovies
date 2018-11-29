@@ -10,7 +10,7 @@ import appStyle from '../../../App.less';
 import style from './movies.less';
 import MovieList from '../../../scenes/MovieList';
 
-export default function moviesHOC(get, moviesStore) {
+export default function moviesHOC(get, moviesStore, paginate = true) {
   type Props = {
     movies: {
       payload: [],
@@ -48,8 +48,10 @@ export default function moviesHOC(get, moviesStore) {
     };
 
     loadMore = () => {
-      const { page } = this.state;
-      this.props.dispatch(get(page));
+      if (paginate) {
+        const { page } = this.state;
+        this.props.dispatch(get(page));
+      }
     };
 
     render() {

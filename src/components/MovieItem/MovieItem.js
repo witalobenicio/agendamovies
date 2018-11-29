@@ -38,7 +38,7 @@ function getFavorited(movies, id) {
 function getBadgeClass(voteNumber) {
   return (() => {
     if (voteNumber > 7) return style.badgeHigh;
-    if (voteNumber > 5) return style.badgeMedium;
+    if (voteNumber > 6) return style.badgeMedium;
     return style.badgeSmall;
   })();
 }
@@ -105,7 +105,7 @@ const MovieItem = (props: Props) => {
           }}
           variant="fab"
           mini
-          color={isFavorited ? 'secondary' : ''}
+          color={isFavorited ? 'secondary' : 'default'}
           aria-label="Favorite"
           className={style.favoriteButton}
         >

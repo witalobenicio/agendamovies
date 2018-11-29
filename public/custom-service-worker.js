@@ -1,78 +1,44 @@
-/* eslint-disable no-undef */
-// importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js');
-//
-// if (workbox) {
-//   console.log('Yay! Workbox is loaded 🎉');
-// } else {
-//   console.log('Boo! Workbox didn\'t load 😬');
-// }
-//
-// const bgSyncPlugin = new workbox.backgroundSync.Plugin('todoQueue', {
-//   maxRetentionTime: 24 * 60,
-// });
-//
-// workbox.routing.registerRoute(
-//   /\.(?:js|css|html|png)$/,
-//   workbox.strategies.networkFirst(),
-// );
-//
-// workbox.routing.registerRoute(
-//   '/static/*',
-//   workbox.strategies.networkFirst(),
-// );
-//
-// workbox.routing.registerRoute(
-//   'custom-service-worker.js',
-//   workbox.strategies.networkFirst(),
-// );
-//
-// workbox.routing.registerRoute(
-//   'logo.png',
-//   workbox.strategies.networkFirst(),
-// );
-//
-// workbox.routing.registerRoute(
-//   'http://localhost:3000',
-//   workbox.strategies.networkFirst(),
-// );
-//
-// workbox.routing.registerRoute(
-//   'http://localhost:3000/movies/*',
-//   workbox.strategies.networkFirst(),
-// );
-//
-// workbox.routing.registerRoute(
-//   'https://api.themoviedb.org/3/',
-//   workbox.strategies.networkFirst(),
-// );
+const cacheName = 'agenda-cache';
+const cacheStatic = 'agenda-static';
 
-// const cacheName = process.env.REACT_APP_CACHE_DYNAMIC;
-// const cacheStatic = process.env.REACT_APP_CACHE_STATIC;
-//
-// self.addEventListener('install', (event) => {
-//   event.waitUntil(caches.open(cacheStatic)
-//     .then((cache) => {
-//       cache.addAll([
-//         'logo.png',
-//         'custom-service-worker.js',
-//         'bundle.css',
-//         'bundle.js',
-//         'favicon.ico',
-//       ]);
-//     }));
-// });
-//
-// self.addEventListener('activate', (event) => {
-//   console.log('Activating Service Worker ....', event);
-//   event.waitUntil(caches.keys()
-//     .then((keyList) => Promise.all(keyList.map((key) => {
-//       if (key !== cacheStatic && key !== cacheName) {
-//         return caches.delete(key);
-//       }
-//     }))));
-//   return self.clients.claim();
-// });
-//
+self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open(cacheStatic)
+    .then((cache) => {
+      cache.addAll([
+        'logo.png',
+        'index.html',
+        'manifest.json',
+        'static/js/1.c433fdc8.chunk.js',
+        'static/js/main.ae4902cd.chunk.js',
+        '/static/js/1.f286e376.chunk.js',
+        '/static/js/main.33009fa7.chunk.js',
+        '/static/css/main.6a7cb18a.chunk.css',
+        'static/js/runtime~main.722d9bea.js',
+        'static/css/main.453391c8.chunk.css',
+        'static/media/noImage.a09e2762.png',
+        'static/media/App.34b40d47.less',
+        'static/media/BottomTabs.5c559ade.less',
+        'static/media/Header.b646623a.less',
+        'static/media/MovieDetail.9e9aafed.less',
+        'static/media/MovieItem.ed783a22.less',
+        'static/media/MovieList.f42c2077.less',
+        'static/media/movies.f492e75c.less',
+      ]);
+    }));
+});
+
+self.addEventListener('activate', (event) => {
+  console.log('Activating Service Worker ....', event);
+  event.waitUntil(caches.keys()
+    .then((keyList) => Promise.all(keyList.map((key) => {
+      if (key !== cacheStatic && key !== cacheName) {
+        return caches.delete(key);
+      }
+    }))));
+  return self.clients.claim();
+});
+
+
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     // Try the network
@@ -92,26 +58,3 @@ self.addEventListener('fetch', (event) => {
           })));
 });
 
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(caches.match(event.request).then(function(response) {
-//     // caches.match() always resolves
-//     // but in case of success response will have value
-//     if (response !== undefined) {
-//       return response;
-//     } else {
-//       return fetch(event.request).then(function (response) {
-//         // response may be used only once
-//         // we need to save clone to put one copy in cache
-//         // and serve second one
-//         let responseClone = response.clone();
-//
-//         caches.open('v1').then(function (cache) {
-//           cache.put(event.request, responseClone);
-//         });
-//         return response;
-//       }).catch(function () {
-//         return caches.match('/sw-test/gallery/myLittleVader.jpg');
-//       });
-//     }
-//   }));
-// });

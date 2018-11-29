@@ -12,8 +12,6 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import AppBar from '@material-ui/core/AppBar';
 import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import _ from 'lodash';
@@ -91,7 +89,7 @@ class Header extends Component<Props> {
     });
   };
 
-  renderSuggestion = (suggestion, { query, isHighlighted }) => {
+  renderSuggestion = (suggestion, { isHighlighted }) => {
     const { history } = this.props;
 
     return (
@@ -129,7 +127,7 @@ class Header extends Component<Props> {
           <Toolbar className={style.header}>
             <Typography className={style.title} variant="h6" color="inherit" noWrap>
               <Link to="/">
-                <img className={style.logo} src={logo} />
+                <img alt="Agenda Movies" className={style.logo} src={logo} />
               </Link>
             </Typography>
             <div className={style.rightContent}>

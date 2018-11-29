@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { combineEpics } from 'redux-observable';
 
 import { DELETE_FAVORITE_MOVIE_REQUEST, failure, success } from './action';
-import AjaxRequest from "../ajax";
+import AjaxRequest from '../ajax';
 
 const deleteFavoriteMovie = (action$: any) =>
   action$

@@ -10,7 +10,7 @@ function onError(e) {
 const Image = (props) => (
   <img
     {...props}
-    src={props.src ? `https://image.tmdb.org/t/p/${props.size}/${props.src}`: undefined}
+    src={props.src ? `https://image.tmdb.org/t/p/${props.size}/${props.src}` : undefined}
     onError={onError}
   />
 );

@@ -13,7 +13,6 @@ function prepareData(data) {
 const favoriteMovies = (action$: any) =>
   action$
     .ofType(FAVORITE_MOVIES_REQUEST)
-    .map(({ payload }) => payload)
     .mergeMap(() => AjaxRequest('get', '/favorite/movies.json', null, undefined, 'firebase')
       .flatMap((response) => Observable.of(success(prepareData(response))))
       .catch(err => Observable.of(failure(err))));

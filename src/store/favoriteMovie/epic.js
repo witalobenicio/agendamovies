@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { combineEpics } from 'redux-observable';
 
 import { FAVORITE_MOVIE_REQUEST, failure, success } from './action';
-import { set } from '~/store/database';
-import AjaxRequest from "../ajax";
+import AjaxRequest from '../ajax';
 
 const favoriteMovie = (action$: any) =>
   action$

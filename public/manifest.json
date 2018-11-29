@@ -1,15 +1,120 @@
 {
-  "short_name": "Agenda Movies",
   "name": "Agenda Movies",
+  "short_name": "Agenda Movies",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#3b3b3b",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "assets/img/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/460d2462-13f8-ffd0-197f-136bc92cc01b.webPlatform.png",
+      "sizes": "44x44",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/e8792144-69c7-e5e9-3eb9-f8f606503fcc.webPlatform.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/3d643b1e-693b-c52a-2992-0c7f59a00b07.webPlatform.png",
+      "sizes": "1240x600",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/a751c550-0a8c-4411-982a-a87cccb1c60d.webPlatform.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/ee0478d0-53e3-fdf2-db93-ae7e2618e5a4.webPlatform.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/0d75d8da-2811-4f3b-f92b-a739c688918d.webPlatform.png",
+      "sizes": "88x88",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/d000fa95-c96b-aa39-069c-872d082dc835.webPlatform.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/88726475-bad4-1f18-0a99-243c2a440c09.webPlatform.png",
+      "sizes": "50x50",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/267c151c-b5a2-303d-4b29-e58ea7f0c07a.webPlatform.png",
+      "sizes": "620x300",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/098e8c1f-6414-201f-7d13-6a3a855cecc1.webPlatform.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/cb2f4f50-f65e-a48c-9bb4-424d5c2f4b55.webPlatform.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/7dce09c4-a9de-3c31-cd89-caa7c2aa488a.webPlatform.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/ebd29163-a47b-9299-e4a6-4681672eddfb.webPlatform.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/45ac09d7-ef1e-0a66-9cf0-6c5bf06491ef.webPlatform.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/861fc7e7-4656-ea37-a136-31716a870766.webPlatform.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/0200763e-0d02-91d5-1f82-0b748131c8d1.webPlatform.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/dbbce354-198d-d661-e13a-c7d5dd589f27.webPlatform.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/ba4e433b-2b63-86b8-1854-b6bf25bba40a.webPlatform.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/bf53e16a-a42f-5794-bf9f-7e0f46794f10.webPlatform.png",
+      "sizes": "76x76",
+      "type": "image/png"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

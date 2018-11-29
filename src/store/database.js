@@ -8,7 +8,7 @@ function read(ref, callback) {
     });
     return null;
   }
-  return myRef.once('value').then((response) => console.log('RESPONSE', response));
+  return myRef.once('value');
 }
 
 function set(ref, payload) {

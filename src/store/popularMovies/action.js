@@ -3,6 +3,7 @@
 
 import Get from '../../common/Get';
 import { show } from '../snackVisibility/action';
+import _ from 'lodash';
 
 export const POPULAR_MOVIES_REQUEST = 'POPULAR_MOVIES_REQUEST';
 export const POPULAR_MOVIES_SUCCESS = 'POPULAR_MOVIES_SUCCESS';
@@ -17,7 +18,7 @@ export function success(payload) {
       loading: false,
       payload: {
         ...payload,
-        results: results ? results.concat(payload.results) : payload.results,
+        results: results ? _.unionBy(results, payload.results, 'id') : payload.results,
       },
     });
   };
@@ -34,7 +35,7 @@ export function failure(response) {
       error: response,
       payload: {
         ...payload,
-        results: results ? results.concat(payload.results) : payload.results,
+        results: results ? _.unionBy(results, payload.results, 'id') : payload.results,
       },
     });
     dispatch(show(response.status_code));

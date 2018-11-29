@@ -21,17 +21,17 @@ class MovieList extends React.Component<Props, void> {
 
   render() {
     const { items, totalItems = 20000, loading = false } = this.props;
-    console.log('ITEM LENGTH', items.length);
     return (
       <div>
         <RecyclerList
           onLoadMore={this.loadMoreRows}
-          class="list"
+          className="list"
           defaultRowHeight={170}
           overscan={20}
         >
-          { items.map(item => (
+          { items.map((item) => (
             <MovieItem
+              key={item.id}
               onPressMovie={this.props.onPressMovie}
               onPressFavorite={this.props.onPressFavorite}
               item={item}
