@@ -51,7 +51,7 @@ function checkValidServiceWorker(swUrl) {
     });
 }
 
-export default function register() {
+export function register() {
   if ('serviceWorker' in navigator) {
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
