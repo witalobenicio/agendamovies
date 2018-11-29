@@ -1,10 +1,13 @@
 /* eslint-disable no-param-reassign */
 
+console.log('SERVICE WORKER');
+
 const isLocalhost = Boolean(window.location.hostname === 'localhost' ||
   window.location.hostname === '[::1]' ||
   window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));
 
 function registerValidSW(swUrl) {
+  console.log('SERVICE WORKER URL', swUrl);
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -27,6 +30,7 @@ function registerValidSW(swUrl) {
 }
 
 function checkValidServiceWorker(swUrl) {
+  console.log('SERVICE WORKER URL CHECK', swUrl);
   fetch(swUrl)
     .then(response => {
       if (
@@ -68,6 +72,8 @@ export default function register() {
         registerValidSW(swUrl);
       }
     });
+  } else {
+    console.log('NO SERVICE WORKER IN NAVIGATOR');
   }
 }
 
