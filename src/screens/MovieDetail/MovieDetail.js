@@ -18,9 +18,15 @@ const style = {
 };
 
 type Props = {
-  movie: {};
+  movie: {},
+  movies: [],
   onPressBuy: () => void,
+  onPressFavorite: () => void,
   // onPressProduct: () => void,
+}
+
+function getFavorited(movies, id) {
+  return movies.find(movie => movie.id === id);
 }
 
 function getBadgeClass(voteNumber) {
@@ -39,13 +45,20 @@ class MovieDetail extends React.Component<Props, void> {
   render() {
     const { movie } = this.props;
     const {
-      title,
+      id, title,
       poster_path: posterPath,
       backdrop_path: backdropPath,
       overview,
       vote_average: voteAverage,
+      vote_count: voteCount,
+      tagline,
       adult, release_date: releaseDate,
     } = movie;
+
+    const { movies } = this.props;
+
+    const isFavorited = getFavorited(movies, id);
+
     return (
       <div>
         <div className={appStyle.mainContainer}>
@@ -75,14 +88,18 @@ class MovieDetail extends React.Component<Props, void> {
                   <p className={`${movieDetailStyle.movieName} ${movieStyle.movieName}`}>
                     {title}
                   </p>
-                  <div className={`${style.badgeVote} ${getBadgeClass(voteAverage)}`}>
-                    <span>{voteAverage}</span>
-                  </div>
+                  <span className={style.tagline}>{tagline}</span>
                 </div>
                 <div className={style.subInfo}>
                   <span className={style.releaseDate}>
                     {moment(releaseDate).format('DD/MM/YYYY')}
                   </span>
+                  <div>
+                    <div className={`${style.badgeVote} ${getBadgeClass(voteAverage)}`}>
+                      <span>{voteAverage}</span>
+                    </div>
+                    <span className={style.voteCount}>{voteCount} votos</span>
+                  </div>
                   { adult ?
                     <span className={style.adult}>
                   +18
@@ -94,9 +111,13 @@ class MovieDetail extends React.Component<Props, void> {
                 <span className={style.movieDescription}>{overview}</span>
               </div>
               <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.props.onPressFavorite(movie, isFavorited);
+                }}
                 variant="fab"
                 mini
-                color="secondary"
+                color={isFavorited ? 'secondary' : 'default'}
                 aria-label="Favorite"
                 className={style.favoriteButton}
               >
